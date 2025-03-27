@@ -31,6 +31,13 @@ public class MainViewModel : ObservableObject
         set => SetProperty(ref _productPrice, value);
     }
 
+    private string _errorMessage;
+    public string ErrorMessage
+    {
+        get => _errorMessage;
+        set => SetProperty(ref _errorMessage, value);
+    }
+
     public ICommand AddProductCommand { get; }
 
     public MainViewModel(IMediator mediator)
@@ -54,11 +61,21 @@ public class MainViewModel : ObservableObject
 
     private async Task AddProductAsync()
     {
-        if (string.IsNullOrWhiteSpace(ProductName) || ProductPrice <= 0) return;
+        if (string.IsNullOrWhiteSpace(ProductName) || ProductPrice <= 0)
+        {
+            ErrorMessage = "El nombre del producto no puede estar vacío y el precio debe ser mayor que 0.";
+            return;
+        }
 
         var newProduct = await _mediator.Send(new AddProductCommand(ProductName, ProductPrice));
         Products.Add(newProduct);
+        ClearMessage();
+    }
+
+    private void ClearMessage()
+    {
         ProductName = string.Empty;
         ProductPrice = 0;
+        ErrorMessage = string.Empty; 
     }
 }
