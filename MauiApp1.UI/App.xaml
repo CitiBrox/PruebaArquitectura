@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Application xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="MauiApp1.UI.App">
+    <Application.Resources>
+        <!-- Resource dictionaries, estilos, etc. -->
+        <ResourceDictionary>
+            <Style TargetType="Button">
+                <Setter Property="BackgroundColor" Value="LightBlue" />
+            </Style>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>
