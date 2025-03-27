@@ -1,0 +1,12 @@
+MauiApp1.UI/obj/
+MauiApp1.UI/bin/
+MauiApp1.Infrastructure/obj/
+MauiApp1.Infrastructure/bin/
+MauiApp1.Domain/obj/
+MauiApp1.Domain/bin/
+MauiApp1.Application/obj/
+MauiApp1.Application/bin/
+MauiApp1/obj/
+MauiApp1/bin/
+**/bin/
+**/obj/
