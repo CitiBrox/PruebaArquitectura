@@ -66,16 +66,12 @@ public class MainViewModel : ObservableObject
             ErrorMessage = "El nombre del producto no puede estar vacío y el precio debe ser mayor que 0.";
             return;
         }
-
         var newProduct = await _mediator.Send(new AddProductCommand(ProductName, ProductPrice));
         Products.Add(newProduct);
         ClearMessage();
     }
 
     private void ClearMessage()
-    {
-        ProductName = string.Empty;
-        ProductPrice = 0;
-        ErrorMessage = string.Empty; 
-    }
+    => (ProductName, ProductPrice, ErrorMessage) = (string.Empty, 0, string.Empty);
+
 }
