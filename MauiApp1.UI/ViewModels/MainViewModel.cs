@@ -37,7 +37,12 @@ public class MainViewModel : ObservableObject
     {
         _mediator = mediator;
         AddProductCommand = new RelayCommand(async () => await AddProductAsync());
-        _ = LoadProductsAsync();
+        InitializeAsync();
+    }
+
+    private async Task InitializeAsync()
+    {
+        await LoadProductsAsync();
     }
 
     private async Task LoadProductsAsync()
