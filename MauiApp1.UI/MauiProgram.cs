@@ -18,6 +18,7 @@ namespace MauiApp1.UI
             builder.Services.AddTransient<MainViewModel>(); // Para inyectar el MainViewModel
             builder.Services.AddTransient<MainPage>(); // Para inyectar la MainPage
             builder.Services.AddSingleton<IProductRepository, ProductRepository>(); // Para el repositorio
+            builder.Services.AddSingleton<ProductService>(); // Para el servicio de productos
             builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(AddProductCommand).Assembly)); // MediatR
 
             // Registra la aplicación MAUI

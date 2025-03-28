@@ -6,6 +6,7 @@
              x:DataType="viewModels:MainViewModel">
 
     <VerticalStackLayout Spacing="15" Padding="20">
+
         <!-- Título o Cabecera -->
         <Label Text="Catálogo de Productos" 
                FontSize="24" 
@@ -14,7 +15,7 @@
 
         <!-- Campo de Entrada para Nombre del Producto -->
         <StackLayout HorizontalOptions="Start" Spacing="0">
-            <Entry Text="{Binding ProductName}" 
+            <Entry Text="{Binding CurrentProduct.Name}" 
                    Placeholder="Nombre del Producto"
                    HorizontalTextAlignment="Start"
                    WidthRequest="250" 
@@ -23,7 +24,7 @@
 
         <!-- Campo de Entrada para Precio -->
         <StackLayout HorizontalOptions="Start" Spacing="0">
-            <Entry Text="{Binding ProductPrice}" 
+            <Entry Text="{Binding CurrentProduct.Price}" 
                    Placeholder="Precio" 
                    Keyboard="Numeric" 
                    HorizontalTextAlignment="Start"
@@ -39,6 +40,14 @@
                 CornerRadius="10" 
                 HeightRequest="50" 
                 HorizontalOptions="Start"/>
+
+           <!-- Indicador de Carga -->
+        <ActivityIndicator IsRunning="{Binding IsLoading}" 
+                           IsVisible="{Binding IsLoading}" 
+                           Color="white" 
+                           Scale="1.5"
+                           AbsoluteLayout.LayoutFlags="All"
+                           AbsoluteLayout.LayoutBounds="0.5, 0.5, AutoSize, AutoSize"  />
 
         <!-- Lista de Productos -->
         <CollectionView ItemsSource="{Binding Products}" Margin="0,20,0,0">
@@ -60,6 +69,6 @@
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
-        
+
     </VerticalStackLayout>
 </ContentPage>
