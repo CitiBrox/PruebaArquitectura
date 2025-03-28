@@ -29,7 +29,19 @@
                    Keyboard="Numeric" 
                    HorizontalTextAlignment="Start"
                    WidthRequest="250" 
-                   VerticalOptions="Center" />
+                   VerticalOptions="Center" 
+                   TextChanged="OnNumberChanged" />
+        </StackLayout>
+
+          <!-- Campo de Entrada para Precio -->
+        <StackLayout HorizontalOptions="Start" Spacing="0">
+            <Entry Text="{Binding CurrentProduct.Numbers}" 
+                   Placeholder="Numbers" 
+                   Keyboard="Numeric" 
+                   HorizontalTextAlignment="Start"
+                   WidthRequest="250" 
+                   VerticalOptions="Center" 
+                   TextChanged="OnNumberChanged" />
         </StackLayout>
 
         <!-- Botón para Agregar Producto -->
@@ -63,6 +75,8 @@
                                    FontAttributes="Bold" 
                                    HorizontalOptions="Start" />
                             <Label Text="{Binding Price, StringFormat='Precio: {0:C}'}" 
+                                   HorizontalOptions="Start" />
+                            <Label Text="{Binding Numbers, StringFormat='Precio: {0:C}'}" 
                                    HorizontalOptions="Start" />
                         </VerticalStackLayout>
                     </Frame>

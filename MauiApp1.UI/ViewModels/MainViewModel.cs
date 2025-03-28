@@ -6,7 +6,8 @@ using MauiApp1.Application.Commands;
 using MauiApp1.Application.Queries;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-
+using CommunityToolkit.Mvvm.Messaging;
+using MauiApp1.UI.Messages;
 namespace MauiApp1.UI.ViewModels;
 
 /// <summary>
@@ -14,7 +15,6 @@ namespace MauiApp1.UI.ViewModels;
 /// </summary>
 public class MainViewModel : ObservableObject
 {
-    
     private readonly ProductService _productService;
 
     // Usamos ObservableCollection para los productos
@@ -70,7 +70,7 @@ public class MainViewModel : ObservableObject
         }
         catch (Exception ex)
         {
-            ErrorMessage = "Error al cargar los productos.";
+            SendMessage(ex.Message);
         }
         finally
         {
@@ -84,13 +84,6 @@ public class MainViewModel : ObservableObject
 
         try
         {
-            // Validamos si el producto es válido
-            if (string.IsNullOrWhiteSpace(CurrentProduct.Name) || CurrentProduct.Price <= 0)
-            {
-                ErrorMessage = "El nombre del producto no puede estar vacío y el precio debe ser mayor que 0.";
-                return;
-            }
-
             // Usamos el servicio para agregar el producto
             var newProduct = await _productService.AddProductAsync(CurrentProduct.Name, CurrentProduct.Price);
             Products.Add(newProduct);
@@ -100,7 +93,7 @@ public class MainViewModel : ObservableObject
         }
         catch (Exception ex)
         {
-            ErrorMessage = "Error al agregar el producto";
+            SendMessage(ex.Message);
         }
         finally
         {
@@ -110,6 +103,7 @@ public class MainViewModel : ObservableObject
 
     private void ClearMessage() => (CurrentProduct, ErrorMessage) = (new Product(), string.Empty);
 
-   
+    private void SendMessage(string message) =>  
+    WeakReferenceMessenger.Default.Send(new ShowModalMessage(message));
 
 }
