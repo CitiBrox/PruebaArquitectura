@@ -14,14 +14,14 @@ public class ProductService
     }
 
     // Método para agregar un producto
-    public async Task<Product> AddProductAsync(string productName, decimal productPrice)
+    public async Task<Product> AddProductAsync(Product product)
     {
-        if (string.IsNullOrWhiteSpace(productName) || productPrice <= 0)
+        if (string.IsNullOrWhiteSpace(product.Name) || product.Price <= 0)
         {
             throw new ArgumentException("El nombre del producto no puede estar vacío y el precio debe ser mayor que 0.");
         }
 
-        var newProduct = await _mediator.Send(new AddProductCommand(productName, productPrice));
+        var newProduct = await _mediator.Send(new AddProductCommand(product));
         return newProduct;
     }
 

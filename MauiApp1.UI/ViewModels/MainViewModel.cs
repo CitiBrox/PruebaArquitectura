@@ -85,7 +85,7 @@ public class MainViewModel : ObservableObject
         try
         {
             // Usamos el servicio para agregar el producto
-            var newProduct = await _productService.AddProductAsync(CurrentProduct.Name, CurrentProduct.Price);
+            var newProduct = await _productService.AddProductAsync(CurrentProduct);
             Products.Add(newProduct);
 
             // Limpiar campos después de agregar el producto
