@@ -13,10 +13,19 @@ public partial class MainPage : ContentPage, IRecipient<ShowModalMessage>
         // Establecemos el ViewModel en el BindingContext
         BindingContext = viewModel; 
 
-        // Regístralo para recibir el mensaje
+        // Registro para recibir el mensaje
         WeakReferenceMessenger.Default.Register<ShowModalMessage>(this);
     }
-
+    /// <summary>
+    /// Método que se invoca cuando se recibe un mensaje de tipo ShowModalMessage.
+    /// Muestra un mensaje de alerta con el contenido del mensaje recibido.
+    /// </summary>
+    /// <param name="msj">Mensaje de tipo ShowModalMessage que contiene el mensaje a mostrar.</param>
+    /// <remarks>
+    /// Este método es parte de la interfaz IRecipient y se invoca automáticamente
+    /// cuando se recibe un mensaje de ese tipo.
+    /// </remarks>
+    /// <returns></returns>
     public void Receive(ShowModalMessage msj)
     {
         DisplayAlert("Mensaje de Sistema", msj.Message, "Ok");
