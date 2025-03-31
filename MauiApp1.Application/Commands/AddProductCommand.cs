@@ -21,7 +21,13 @@ public class AddProductCommandHandler : IRequestHandler<AddProductCommand, Produ
         _repository = repository;
     }
 
-    public async Task<Product> Handle(AddProductCommand request, CancellationToken cancellationToken)
+    /// <summary>
+    ///  Guardar el nuevo producto usando el repositorio y retornar el producto agregado
+    /// </summary>
+    /// <param name="request">Record de tipo AddProductCommandparam>
+    /// <param name="_">strunct implementado de IRequestHandler</param>
+    /// <returns></returns>
+    public async Task<Product> Handle(AddProductCommand request, CancellationToken _)
     {
         var newProduct = new Product { Name = request.Name, Price = request.Price };
         return await _repository.AddAsync(newProduct);

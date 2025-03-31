@@ -13,6 +13,11 @@ public class ProductRepository : IProductRepository
 
     public Task<List<Product>> GetAllAsync() => Task.FromResult(_storage.ToList());
 
+    /// <summary>
+    /// Agrega un producto.
+    /// </summary>
+    /// <param name="product">El producto que será agregado al almacenamiento.</param>
+    /// <returns>Una tarea que representa la operación asíncrona, cuyo resultado es el producto agregado.</returns>
     public Task<Product> AddAsync(Product product)
     {
         _storage.Add(product);

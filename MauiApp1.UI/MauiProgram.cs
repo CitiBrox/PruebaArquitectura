@@ -15,11 +15,12 @@ namespace MauiApp1.UI
             var builder = MauiApp.CreateBuilder();
 
             // Registra ViewModel y Página en el contenedor de dependencias
-            builder.Services.AddTransient<MainViewModel>(); // Para inyectar el MainViewModel
-            builder.Services.AddTransient<MainPage>(); // Para inyectar la MainPage
-            builder.Services.AddSingleton<IProductRepository, ProductRepository>(); // Para el repositorio
-            builder.Services.AddSingleton<ProductService>(); // Para el servicio de productos
-            builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(AddProductCommand).Assembly)); // MediatR
+            builder.Services.AddTransient<MainViewModel>(); 
+            builder.Services.AddTransient<MainPage>(); 
+            builder.Services.AddSingleton<IProductRepository, ProductRepository>();
+            builder.Services.AddSingleton<ProductService>();
+            // Inyección de MediatR
+            builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(AddProductCommand).Assembly)); 
 
             // Registra la aplicación MAUI
             builder
@@ -31,10 +32,10 @@ namespace MauiApp1.UI
                 });
 
 #if DEBUG
-            builder.Logging.AddDebug(); // Para la depuración
+            builder.Logging.AddDebug();
 #endif
-
-            return builder.Build(); // Devuelve la aplicación configurada
+            //Devuelve la aplicación configurada
+            return builder.Build(); 
         }
     }
 }

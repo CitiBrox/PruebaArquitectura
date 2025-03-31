@@ -7,6 +7,6 @@ namespace MauiApp1.Application.Interfaces;
 /// </summary>
 public interface IProductRepository
 {
-    Task<List<Product>> GetAllAsync();         // Obtiene todos los productos
-    Task<Product> AddAsync(Product product);   // Agrega un nuevo producto
+    Task<List<Product>> GetAllAsync();         
+    Task<Product> AddAsync(Product product);
 }
