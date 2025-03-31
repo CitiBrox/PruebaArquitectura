@@ -7,7 +7,7 @@ namespace MauiApp1.Application.Commands;
 /// <summary>
 /// Comando para agregar un nuevo producto.
 /// </summary>
-public record AddProductCommand(string Name, decimal Price) : IRequest<Product>;
+public record AddProductCommand(Product product) : IRequest<Product>;
 
 /// <summary>
 /// Handler para procesar AddProductCommand.
@@ -24,12 +24,12 @@ public class AddProductCommandHandler : IRequestHandler<AddProductCommand, Produ
     /// <summary>
     ///  Guardar el nuevo producto usando el repositorio y retornar el producto agregado
     /// </summary>
-    /// <param name="request">Record de tipo AddProductCommandparam>
+    /// <param name="request">Record de tipo AddProductCommand</param>
     /// <param name="_">strunct implementado de IRequestHandler</param>
     /// <returns></returns>
     public async Task<Product> Handle(AddProductCommand request, CancellationToken _)
     {
-        var newProduct = new Product { Name = request.Name, Price = request.Price };
-        return await _repository.AddAsync(newProduct);
+         var productHandle = request.product;
+        return await _repository.AddAsync(productHandle);
     }
 }

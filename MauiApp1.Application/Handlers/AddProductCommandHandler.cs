@@ -25,12 +25,7 @@ public class AddProductCommandHandler : IRequestHandler<AddProductCommand, Produ
     /// <returns></returns>
     public async Task<Product> Handle(AddProductCommand request, CancellationToken cancellationToken)
     {
-        var newProduct = new Product
-        {
-            Name = request.Name,
-            Price = request.Price
-        };
-
-        return await _repository.AddAsync(newProduct);
+        var productHandle = request.product;
+        return await _repository.AddAsync(productHandle);
     }
 }
