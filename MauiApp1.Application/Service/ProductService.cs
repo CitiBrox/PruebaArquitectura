@@ -21,7 +21,7 @@ public class ProductService
             throw new ArgumentException("El nombre del producto no puede estar vacío y el precio debe ser mayor que 0.");
         }
 
-        var newProduct = await _mediator.Send(new AddProductCommand(product));
+        var newProduct = await _mediator.Send(new AddProductCommand(product.Name, product.Price));
         return newProduct;
     }
 
