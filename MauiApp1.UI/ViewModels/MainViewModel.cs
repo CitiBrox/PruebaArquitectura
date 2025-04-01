@@ -2,12 +2,12 @@ using System.Collections.ObjectModel;
 using System.Windows.Input;
 using MediatR;
 using MauiApp1.Domain.Entities;
-using MauiApp1.Application.Commands;
-using MauiApp1.Application.Queries;
+using MauiApp1.Application.Service;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using MauiApp1.UI.Messages;
+
 namespace MauiApp1.UI.ViewModels;
 
 /// <summary>
@@ -16,6 +16,8 @@ namespace MauiApp1.UI.ViewModels;
 public class MainViewModel : ObservableObject
 {
     private readonly ProductService _productService;
+
+    public ICommand AddProductCommand { get; }
 
     /// <summary>
     /// Usa ObservableCollection para los productos
@@ -52,7 +54,21 @@ public class MainViewModel : ObservableObject
         set => SetProperty(ref _isLoading, value);
     }
 
-    public ICommand AddProductCommand { get; }
+    /// <summary>
+    /// Revisar la validación en el formato de texto cada vez que cambia.
+    /// </summary>
+    private string _numberText;
+    public string NumberText
+    {
+        get => _numberText;
+        set
+        {
+            if (SetProperty(ref _numberText, value))
+            {
+                ValidateNumber(value);
+            }
+        }
+    }
 
     public MainViewModel(ProductService productService)
     {
@@ -117,6 +133,22 @@ public class MainViewModel : ObservableObject
         finally
         {
             IsLoading = false;
+        }
+    }
+
+    /// <summary>
+    /// Valida si el texto es valido
+    /// </summary>
+    /// <param name="newText">Texto</param>
+    private void ValidateNumber(string newText)
+    {
+        if (string.IsNullOrEmpty(newText) || decimal.TryParse(newText, out _))
+        {
+            ErrorMessage = string.Empty;
+        }
+        else
+        {
+            ErrorMessage = "Solo se permiten números válidos"; 
         }
     }
 

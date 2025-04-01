@@ -5,6 +5,7 @@ using MauiApp1.Application.Interfaces;
 using MauiApp1.Infrastructure.Repositories;
 using MauiApp1.UI.Views;
 using Microsoft.Maui.Controls.Hosting;
+using MauiApp1.Application.Service;
 
 namespace MauiApp1.UI
 {

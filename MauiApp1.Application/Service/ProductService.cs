@@ -3,6 +3,8 @@ using MauiApp1.Application.Queries;
 using MauiApp1.Domain.Entities;
 using MediatR;
 
+namespace MauiApp1.Application.Service;
+
 /// <summary>
 /// Capa de servicio que maneja la lógica de los productos
 /// </summary>
@@ -37,7 +39,7 @@ public class ProductService
     /// Recupera todos los productos disponibles mediante el envío de una consulta GetAllProductsQuery a través de MediatR.
     /// </summary>
     /// <returns>Una tarea que representa la operación asíncrona, cuyo resultado es una colección de productos.</returns>
-    public async Task<IEnumerable<Product>> GetAllProductsAsync()
+    public async Task<List<Product>> GetAllProductsAsync()
     {
         var products = await _mediator.Send(new GetAllProductsQuery());
         return products;
