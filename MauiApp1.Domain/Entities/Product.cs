@@ -5,9 +5,18 @@ namespace MauiApp1.Domain.Entities;
 /// </summary>
 public class Product
 {
-    public Guid Id { get; set; }            // Identificador único
-    public string Name { get; set; } = "";  // Nombre del producto
-    public decimal Price { get; set; }      // Precio del producto
+    /// <summary>
+    /// Identificador único
+    /// </summary>
+    public Guid Id { get; set; }
+    /// <summary>
+    /// Nombre del producto
+    /// </summary>
+    public string Name { get; set; } = "";
+    /// <summary>
+    /// Precio del producto
+    /// </summary>
+    public decimal Price { get; set; }
 
     public Product()
     {
