@@ -1,5 +1,6 @@
 using MauiApp1.Application.Commands;
 using MauiApp1.Application.Queries;
+using MauiApp1.Application.Interfaces;
 using MauiApp1.Domain.Entities;
 using MediatR;
 
@@ -8,7 +9,7 @@ namespace MauiApp1.Application.Service;
 /// <summary>
 /// Capa de servicio que maneja la lógica de los productos
 /// </summary>
-public class ProductService
+public class ProductService : IProductService
 {
     private readonly IMediator _mediator;
 
@@ -16,7 +17,6 @@ public class ProductService
     {
         _mediator = mediator;
     }
-
 
     /// <summary>
     /// Agrega un nuevo producto validando previamente que los datos sean correctos, mediante el envío del comando AddProductCommand a través de MediatR.

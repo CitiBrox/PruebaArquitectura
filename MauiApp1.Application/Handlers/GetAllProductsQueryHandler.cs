@@ -21,8 +21,8 @@ public class GetAllProductsQueryHandler : IRequestHandler<GetAllProductsQuery, L
     /// Maneja la consulta GetAllProductsQuery para obtener todos los productos almacenados.
     /// </summary>
     /// <param name="request">Consulta de tipo GetAllProductsQuery</param>
-    /// <param name="cancellationToken">Token para observar mientras se espera la tarea, que permite cancelar la operación.</param>
-    /// <returns>Una tarea que representa la operación asíncrona. El resultado contiene una lista con todos los productos.</returns>
+    /// <param name="cancellationToken">Token para observar mientras se espera la tarea, que permite cancelar la operaciÃ³n.</param>
+    /// <returns>Una tarea que representa la operaciÃ³n asÃ­ncrona. El resultado contiene una lista con todos los productos.</returns>
     public async Task<List<Product>> Handle(GetAllProductsQuery request, CancellationToken cancellationToken)
     {
         // Obtener todos los productos desde el repositorio
