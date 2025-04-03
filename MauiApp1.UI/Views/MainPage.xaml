@@ -70,6 +70,5 @@
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
-
     </VerticalStackLayout>
 </ContentPage>

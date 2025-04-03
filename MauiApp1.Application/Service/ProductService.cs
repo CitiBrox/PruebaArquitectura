@@ -1,12 +1,15 @@
 using MauiApp1.Application.Commands;
 using MauiApp1.Application.Queries;
+using MauiApp1.Application.Interfaces;
 using MauiApp1.Domain.Entities;
 using MediatR;
+
+namespace MauiApp1.Application.Service;
 
 /// <summary>
 /// Capa de servicio que maneja la lógica de los productos
 /// </summary>
-public class ProductService
+public class ProductService : IProductService
 {
     private readonly IMediator _mediator;
 
@@ -14,7 +17,6 @@ public class ProductService
     {
         _mediator = mediator;
     }
-
 
     /// <summary>
     /// Agrega un nuevo producto validando previamente que los datos sean correctos, mediante el envío del comando AddProductCommand a través de MediatR.
@@ -37,7 +39,7 @@ public class ProductService
     /// Recupera todos los productos disponibles mediante el envío de una consulta GetAllProductsQuery a través de MediatR.
     /// </summary>
     /// <returns>Una tarea que representa la operación asíncrona, cuyo resultado es una colección de productos.</returns>
-    public async Task<IEnumerable<Product>> GetAllProductsAsync()
+    public async Task<List<Product>> GetAllProductsAsync()
     {
         var products = await _mediator.Send(new GetAllProductsQuery());
         return products;
