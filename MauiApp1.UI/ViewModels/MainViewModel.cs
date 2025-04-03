@@ -37,7 +37,7 @@ public class MainViewModel : ObservableObject
     /// <summary>
     /// Mensaje de error que se muestra en la interfaz cuando ocurre una excepción.
     /// </summary>
-    private string _errorMessage;
+    private string _errorMessage = string.Empty;
     public string ErrorMessage
     {
         get => _errorMessage;
@@ -54,42 +54,17 @@ public class MainViewModel : ObservableObject
         set => SetProperty(ref _isLoading, value);
     }
 
-    /// <summary>
-    /// Revisar la validación en el formato de texto cada vez que cambia.
-    /// </summary>
-    private string _numberText;
-    public string NumberText
-    {
-        get => _numberText;
-        set
-        {
-            if (SetProperty(ref _numberText, value))
-            {
-                ValidateNumber(value);
-            }
-        }
-    }
-
     public MainViewModel(ProductService productService)
     {
         _productService = productService;
         AddProductCommand = new RelayCommand(async () => await AddProductAsync());
-        InitializeAsync();
+        _ = InitializeAsync();
     }
 
     /// <summary>
-    /// Método que inicializa la carga inicial de productos en el ViewModel.
+    /// Carga todos los productos disponibles desde el servicio de productos, actualizando la colección observable para reflejarlos en la interfaz.
     /// </summary>
     private async Task InitializeAsync()
-    {
-        await LoadProductsAsync();
-    }
-
-    /// <summary>
-    /// Carga todos los productos disponibles desde el servicio de productos, 
-    /// actualizando la colección observable para reflejarlos en la interfaz.
-    /// </summary>
-    private async Task LoadProductsAsync()
     {
         try
         {
